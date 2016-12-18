@@ -31,4 +31,35 @@ html.no-js(lang='en' xml:lang='en' xmlns='http://www.w3.org/1999/xhtml')
     script(src="#{url_for('/js/share.js')}")
     script(src="#{url_for('/js/index.js')}")
     / = inline_tag 'script', '/js/index.js'
-    script(src='/browser-sync/browser-sync-client.js')
+
+    javascript:
+      var a
+
+      window.__hotReloadBrowserSync = function () {
+        var b
+
+        window.___browserSync___.socket.on("file:reload", function (c) {
+          Array.prototype.forEach.call(document.querySelectorAll("script"),
+          function (d) {
+            if ((d.src || "").indexOf(c.basename) === -1) {
+              return
+            }
+
+            b = document.createElement("script")
+            b.setAttribute("src", d.getAttribute("src"))
+
+            d.parentNode.insertBefore(b, d.nextSibling)
+            d.remove()
+          })
+        })
+      }
+
+      a = document.createElement("script")
+      a.setAttribute("async", true)
+      a.setAttribute("onload", "__hotReloadBrowserSync()")
+      a.setAttribute("src", "/browser-sync/browser-sync-client.js")
+
+      document.getElementsByTagName("head").item(0)
+        .appendChild(a)
+
+    / script(src='/browser-sync/browser-sync-client.js')
