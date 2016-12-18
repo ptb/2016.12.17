@@ -51,6 +51,7 @@
     "tag-loader": "^0.3.0",
     "webpack": "beta",
     "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.13.2",
     "webpack-stream": "^3.2.0"
   },
   "homepage": "https://github.com/ptb/2016.12.17#readme",
