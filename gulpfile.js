@@ -605,6 +605,10 @@ gulp.task("default", gulp.series("check", function watch (done) {
       "cert": "localhost.crt",
       "key": "localhost.key"
     },
+    "injectFileTypes": [
+      "css",
+      "js"
+    ],
     "logConnections": true,
     "notify": false,
     "open": false,
