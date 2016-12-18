@@ -600,6 +600,8 @@ gulp.task("check", gulp.series(
 ))
 
 gulp.task("default", gulp.series("check", function watch (done) {
+  var w = plug.webpack(opts.webpack)
+
   plug.browserSync.init({
     "files": opts.path.out,
     "https": {
@@ -611,6 +613,14 @@ gulp.task("default", gulp.series("check", function watch (done) {
       "js"
     ],
     "logConnections": true,
+    "middleware": [
+      plug.webpackDevMiddleware(w, {
+        "publicPath": OUT,
+        "stats": {
+          "colors": true
+        }
+      })
+    ],
     "notify": false,
     "open": false,
     "reloadDebounce": 100,
