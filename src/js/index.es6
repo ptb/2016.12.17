@@ -37,9 +37,15 @@ var reload = function (name) {
     // copy state from the old to new tag
     for (var key in oldTag) {
       v = oldTag[key]
-      if (~nonState.indexOf(key)) { continue }
-      if (v instanceof HTMLElement) { continue } // ignore refs
-      if (typeof v === "function") { continue } // ignore the tag's functions
+      if (~nonState.indexOf(key)) {
+        continue
+      }
+      if (v instanceof HTMLElement) {
+        continue
+      } // ignore refs
+      if (typeof v === "function") {
+        continue
+      } // ignore the tag's functions
       newTag[key] = v
     }
     newTag.update()
